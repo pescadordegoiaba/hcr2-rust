@@ -4,6 +4,11 @@ This repository contains an independent, clean-room-style reimplementation of
 the *driving physics and browser front-end* of a 2D hill-climb game, written in
 Rust and compiled to WebAssembly.
 
+The MIT license above covers the source code in this repository only — the Rust
+crate, the browser front-end and the Python extraction tools. It does not cover
+Hill Climb Racing 2, its artwork, audio, level designs or any other asset owned
+by Fingersoft Ltd.
+
 ## What is NOT in this repository
 
 Deliberately excluded, because it is not ours to redistribute:

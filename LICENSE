@@ -19,10 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-This license covers the source code in this repository only (the Rust crate,
-the browser front-end and the Python extraction tools). It does not cover
-Hill Climb Racing 2, its artwork, audio, level designs or any other asset
-owned by Fingersoft Ltd. See NOTICE.md.
