@@ -1,0 +1,21 @@
+name: ci
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - name: Test
+        run: cargo test --release
+      - name: Build wasm
+        run: cargo build --release --target wasm32-unknown-unknown
+      - name: Report wasm size
+        run: ls -l target/wasm32-unknown-unknown/release/climb.wasm
