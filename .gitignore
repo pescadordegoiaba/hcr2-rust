@@ -1,0 +1,9 @@
+# Build output
+/target
+
+# Extracted game assets (copyrighted — regenerate with tools/extract_assets.py)
+/assets
+
+# Python
+__pycache__/
+*.pyc

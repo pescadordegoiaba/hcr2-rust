@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trilha — offline</title>
+  <style>
+    :root { color-scheme: dark; }
+    html, body { margin: 0; height: 100%; background: #142018; color: #f4f1e6; font-family: "Segoe UI", sans-serif; }
+    body { display: flex; flex-direction: column; min-height: 100%; }
+    header { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 10px 14px; background: #0e1712; }
+    h1 { font-size: 18px; margin: 0; letter-spacing: 0.04em; }
+    header p { margin: 0; font-size: 12px; opacity: 0.75; }
+    #wrap { position: relative; flex: 1; min-height: 0; }
+    canvas { width: 100%; height: 100%; display: block; background: #87b4d6; touch-action: none; }
+    /* The in-game HUD is painted on canvas from the APK atlas (hud.js). */
+    #hud { position: absolute; left: 12px; top: 12px; display: none; gap: 8px; pointer-events: none; }
+    .pill { background: rgba(8, 14, 10, 0.72); border-radius: 999px; padding: 6px 12px; font-size: 14px; }
+    #menu, #end { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(6, 12, 8, 0.55); }
+    .card { width: min(560px, calc(100% - 24px)); background: #102018; border-radius: 16px; padding: 18px; box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+    .card h2 { margin: 0 0 8px; }
+    .card p { margin: 0 0 12px; line-height: 1.4; font-size: 14px; }
+    .row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    button { border: 0; border-radius: 999px; padding: 8px 14px; background: #244232; color: inherit; cursor: pointer; }
+    button.on, button.primary { background: #e2b15a; color: #1b1408; font-weight: 700; }
+    /* Pedals are painted from the APK atlas; the canvas handles the taps. */
+    .controls { display: none; }
+    .controls button { width: 92px; height: 64px; border-radius: 14px; font-size: 16px; }
+    #note { font-size: 12px; opacity: 0.8; }
+    hidden, [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Trilha</h1>
+      <p>Corrida offline com a arte local. Direita acelera, esquerda freia.</p>
+    </div>
+    <p id="note">WASM…</p>
+  </header>
+  <div id="wrap">
+    <canvas id="view"></canvas>
+    <div id="hud">
+      <div class="pill" id="dist">0 m</div>
+      <div class="pill" id="speed">0 km/h</div>
+      <div class="pill" id="fuel">combustível 100</div>
+      <div class="pill" id="coins">0 moedas</div>
+    </div>
+    <div id="menu">
+      <div class="card">
+        <h2>Escolha o carro e o chão</h2>
+        <p>O carro usa o modelo do dump: torque, suspensão por frequência, combustível e moedas por distância. O chão continua gerado aqui. As moedas ficam neste navegador.</p>
+        <div class="row" id="vehicles"></div>
+        <div class="row" id="upgrades"></div>
+        <div class="row" id="biomes"></div>
+        <label class="pill" style="pointer-events:auto"><input id="grip" type="checkbox" /> pneu macio (+aderência)</label>
+        <button class="primary" id="go" type="button">Correr</button>
+      </div>
+    </div>
+    <div id="end" hidden>
+      <div class="card">
+        <h2 id="end-title">Fim</h2>
+        <p id="end-copy"></p>
+        <button class="primary" id="again" type="button">De novo</button>
+      </div>
+    </div>
+    <div class="controls">
+      <button type="button" id="btn-brake">Freio</button>
+      <button type="button" id="btn-gas">Gás</button>
+    </div>
+  </div>
+  <audio id="music" loop></audio>
+  <script src="./hud.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
